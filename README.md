@@ -354,6 +354,10 @@ ansible-playbook os-gru	b.yml -i inventory-hana --syntax-check
 ansible-playbook os-gru	b.yml -i inventory-hana —tags validate
 
 ansible-playbook os-gru	b.yml -i inventory-hana —tags grub
+ansible cicd  -m shell -a 'rpm -qa --last|head -n 5'
+
+bash shell
+[root@dns ~]# for i in $(<cicd); do echo $i; ssh -k -tt -o StrictHostKeyChecking=no $i 'sudo bash -s' < update.sh;done
 
 ansible-doc -l | grep -i udevadm
 ansible-doc copy or blockinfile
